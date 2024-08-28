@@ -783,65 +783,49 @@
 ===================================================================================================================================
 
 8. expressions and Operators
-    a.Expressions and Operations in JavaScript
-1. Conditional Operators
-Ternary Operator (? :):
-Description: Short-hand for if...else.
-Example:
-javascript
-Copy code
-let age = 18;
-let status = (age >= 18) ? "Adult" : "Minor";
-console.log(status); // "Adult"
-2. Comma Operator
-Description: Executes multiple expressions in a single statement, returns the last expression’s value.
-Example:
-javascript
-Copy code
-let x = (2, 3, 4);
-console.log(x); // 4
-3. Unary Operators
-Description: Operates on a single operand.
-Examples:
-Increment (++):
-javascript
-Copy code
-let a = 5;
-a++; // a is now 6
-Decrement (--):
-javascript
-Copy code
-let b = 10;
-b--; // b is now 9
-Unary Negation (-):
-javascript
-Copy code
-let c = 5;
-console.log(-c); // -5
-4. Relational Operators
-Description: Compare two values to determine their relationship.
-Examples:
-Less Than (<):
-javascript
-Copy code
-console.log(3 < 5); // true
-Greater Than (>):
-javascript
-Copy code
-console.log(7 > 2); // true
-5. Assignment Operators
-Description: Assign values to variables.
-Examples:
-Simple Assignment (=):
-javascript
-Copy code
-let x = 10;
-Addition Assignment (+=):
-javascript
-Copy code
-let y = 5;
-y += 3; // y is now 8
-6. Comparison Operators
+    a. Conditional Operators
+        a.1. Ternary Operator (? :):
+            - Short-hand for if...else.
+                ex. let age = 18;
+                    let status = (age >= 18) ? "Adult" : "Minor";
+                    console.log(status); // "Adult"
+    
+    b. Comma Operator
+        - Executes multiple expressions in a single statement, returns the last expression’s value.
+            ex. let x = (2, 3, 4);
+                console.log(x); // 4
+
+    c. Unary Operators
+        - Operates on a single operand.
+            Examples:
+                ex.1. Increment (++):
+                    let a = 5;
+                    a++; // a is now 6
+                ex.2. Decrement (--):
+                    let b = 10;
+                    b--; // b is now 9
+                ex.3. Unary Negation (-):
+                    let c = 5;
+                    console.log(-c); // -5
+
+    d. Relational Operators
+        - Compare two values to determine their relationship.
+            Examples:
+                ex.1. Less Than (<):
+                    console.log(3 < 5); // true
+                ex.2. Greater Than (>):
+                    console.log(7 > 2); // true
+
+    e. Assignment Operators
+        - Assign values to variables.
+            Examples:
+                ex.1. Simple Assignment (=):
+                    let x = 10;
+                ex.2. Addition Assignment (+=):
+                    let y = 5;
+                    y += 3; // y is now 8
+
+    f. Comparison Operators
 Description: Compare values and return a boolean.
 Examples:
 Equal to (==):
