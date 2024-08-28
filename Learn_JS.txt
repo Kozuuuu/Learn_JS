@@ -938,23 +938,23 @@
 ===================================================================================================================================
 ===================================================================================================================================
 
-9. FUNCTIONS PARAMETERS
-    9.1 Default Parameters
-        - Allow functions to have default values for parameters if none are provided.
-            Example:
-                function greet(name = 'Guest') {
-                    return `Hello, ${name}`;
-                }
-                console.log(greet()); // "Hello, Guest"
-                console.log(greet('Alice')); // "Hello, Alice"
-
-    b. Rest Parameters
-        - Collect multiple arguments into an array.
-            Example:
-                function sum(...numbers) {
-                    return numbers.reduce((acc, curr) => acc + curr, 0);
-                }
-                console.log(sum(1, 2, 3, 4)); // 10
+9. FUNCTIONS IN JAVASCRIPT
+    9.1 Functions Parameters
+        a. Default Parameters
+            - Allow functions to have default values for parameters if none are provided.
+                Example:
+                    function greet(name = 'Guest') {
+                        return `Hello, ${name}`;
+                    }
+                    console.log(greet()); // "Hello, Guest"
+                    console.log(greet('Alice')); // "Hello, Alice"
+        b. Rest Parameters
+            - Collect multiple arguments into an array.
+                Example:
+                    function sum(...numbers) {
+                        return numbers.reduce((acc, curr) => acc + curr, 0);
+                    }
+                    console.log(sum(1, 2, 3, 4)); // 10
 
     9.2. Arrow Functions
         - Shorter syntax for functions that do not have their own this context.
@@ -1045,6 +1045,7 @@
                     ex.2 Creating Elements:
                         let newDiv = document.createElement('div');
                         document.body.appendChild(newDiv);
+                        
         b. Element Object
             - Represents individual elements in the DOM.
                 Examples:
