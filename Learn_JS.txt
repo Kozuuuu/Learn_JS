@@ -938,4 +938,361 @@
 ===================================================================================================================================
 ===================================================================================================================================
 
-9.
+9. FUNCTIONS PARAMETERS
+    9.1 Default Parameters
+        - Allow functions to have default values for parameters if none are provided.
+            Example:
+                function greet(name = 'Guest') {
+                    return `Hello, ${name}`;
+                }
+                console.log(greet()); // "Hello, Guest"
+                console.log(greet('Alice')); // "Hello, Alice"
+
+    b. Rest Parameters
+        - Collect multiple arguments into an array.
+            Example:
+                function sum(...numbers) {
+                    return numbers.reduce((acc, curr) => acc + curr, 0);
+                }
+                console.log(sum(1, 2, 3, 4)); // 10
+
+    9.2. Arrow Functions
+        - Shorter syntax for functions that do not have their own this context.
+            Example:
+                const add = (a, b) => a + b;
+                console.log(add(2, 3)); // 5
+
+    9.3. Immediately Invoked Function Expressions (IIFE)
+        - Functions that execute immediately after being defined.
+            Example:
+                (function() {
+                    console.log("IIFE executed");
+                })();
+
+    9.4. Arguments Object
+        - An array-like object containing all arguments passed to a function.
+            Example:
+                function showArgs() {
+                    console.log(arguments);
+                }
+                showArgs(1, 2, 3); // { 0: 1, 1: 2, 2: 3, length: 3 }
+
+    9.5. Scope and Function Stack
+        a. Recursion
+            - A function calling itself to solve a problem in smaller chunks.
+                Example:
+                    function factorial(n) {
+                        if (n <= 1) return 1;
+                        return n * factorial(n - 1);
+                    }
+                    console.log(factorial(5)); // 120
+
+        b. Lexical Scoping
+            - Functions have access to variables defined in their outer scope.
+                Example:
+                    function outer() {
+                        let outerVar = 'I am outside';
+                        function inner() {
+                            console.log(outerVar); // Accesses outerVar
+                        }
+                        inner();
+                    }
+                    outer(); // "I am outside"
+
+        c. Closures
+            - Functions that retain access to variables from their lexical scope even after the outer function has finished executing.
+                Example:
+                    function createCounter() {
+                        let count = 0;
+                        return function() {
+                            count++;
+                            return count;
+                        };  
+                    }
+                    const counter = createCounter();
+                    console.log(counter()); // 1
+                    console.log(counter()); // 2
+
+    9.6. Built-in Functions
+        - Functions provided by JavaScript that are available globally.
+            Examples:
+                ex.1 parseInt:
+                    console.log(parseInt('10', 10)); // 10
+                ex.2 parseFloat:
+                    console.log(parseFloat('10.5')); // 10.5
+                ex.3 isNaN:
+                    console.log(isNaN('hello')); // true
+
+    Summary:
+        9.1. Function Parameters: Default and rest parameters for handling arguments.
+        9.2. Arrow Functions: Concise syntax for functions.
+        9.3. IIFE: Functions that execute immediately.
+        9.4. Arguments Object: Provides access to all arguments passed to a function.
+        9.5. Scope and Function Stack: Includes recursion, lexical scoping, and closures.
+        9.6. Built-in Functions: Predefined functions provided by JavaScript.
+
+===================================================================================================================================
+===================================================================================================================================
+
+10. DOM APIs (Document Object Model APIs)
+    -The DOM API provides a way to interact with and manipulate HTML and XML documents. It represents the document structure as a tree of objects.
+
+        a. Document Object
+            - Represents the entire document.
+                Examples:
+                    ex.1 Accessing Elements:
+                        let header = document.getElementById('header');
+                    ex.2 Creating Elements:
+                        let newDiv = document.createElement('div');
+                        document.body.appendChild(newDiv);
+        b. Element Object
+            - Represents individual elements in the DOM.
+                Examples:
+                    ex.1. Modifying Attributes:
+                        let link = document.querySelector('a');
+                        link.setAttribute('href', 'https://example.com');
+                    ex.2. Changing Content:
+                        let paragraph = document.querySelector('p');
+                        paragraph.textContent = 'New text content';
+
+        c. Node Object
+            - Represents a node in the DOM tree (can be an element, text, or comment).
+                Ex.1. Traversing Nodes:
+                        let firstChild = document.body.firstChild;
+                        let parentNode = document.body.parentNode;
+
+        d. Event Handling
+            - Allows interaction with user actions.
+                Examples:
+                    ex.1. Adding Event Listeners:
+                        let button = document.querySelector('button');
+                        button.addEventListener('click', () => {
+                            alert('Button clicked!');
+                        });
+                    ex.2. Removing Event Listeners:
+                        function handleClick() {
+                            console.log('Button clicked');
+                        }
+                        button.addEventListener('click', handleClick);
+                        button.removeEventListener('click', handleClick);
+
+        e. Traversing and Manipulating the DOM
+            - Navigate and modify the DOM tree.
+                Examples:
+                    ex.1. Selecting Elements:
+                        let divs = document.querySelectorAll('div');
+                    ex.2. Changing Styles:
+                        let box = document.getElementById('box');
+                        box.style.backgroundColor = 'blue';
+                    ex.3. Inserting Elements:
+                        let newElement = document.createElement('p');
+                        newElement.textContent = 'Inserted Paragraph';
+                        document.body.appendChild(newElement);
+
+        f. Document Methods
+            Description: Various methods for interacting with the document.
+                Examples:
+                    ex.1. getElementById:
+                        let header = document.getElementById('header');
+                    ex.2. querySelector:
+                        let firstDiv = document.querySelector('div');
+                    ex.3. createElement:
+                        let newElement = document.createElement('span');
+    Summary:
+        1. Document Object: Interact with the whole document.
+        2. Element Object: Manipulate specific elements.
+        3. Node Object: Work with different types of nodes in the DOM.
+        4. Event Handling: Add and remove event listeners.
+        5. Traversing and Manipulating the DOM: Navigate and modify the document structure.
+        6. Document Methods: Basic methods for selecting and creating elements.
+
+===================================================================================================================================
+===================================================================================================================================
+
+11. Strict Mode in JavaScript
+    -Strict Mode is a way to opt into a restricted version of JavaScript. It helps catch common coding mistakes and unsafe actions, making your code more predictable and easier to debug.
+
+        11.1. Enabling Strict Mode
+            - You can enable strict mode for an entire script or for individual functions.
+                a. Whole Script:
+                    'use strict';
+                    // Entire script runs in strict mode
+                    let x = 3.14;
+                b. Function Scope:
+                    function myFunction() {
+                        'use strict';
+                        // Code inside this function runs in strict mode
+                        let y = 2.71;
+                    }
+                    
+        11.2. Changes and Restrictions in Strict Mode
+            a. Eliminates this Coercion:
+                - In strict mode, this is undefined in functions that are called without a context.
+                    Example:
+                        function checkThis() {
+                            console.log(this); // undefined in strict mode
+                        }
+                        checkThis();
+                
+            b. Disallows Duplicate Parameter Names:
+                - You can't have duplicate parameters in function definitions.
+                    Example:
+                        function sum(a, a) { // SyntaxError in strict mode
+                            return a + a;
+                        }
+
+            c. Forbids with Statement:
+                - The with statement is not allowed.
+                    Example:
+                        with (Math) { // SyntaxError in strict mode
+                            console.log(PI);
+                        }
+
+            d. Makes eval Safer:
+                - Code executed inside eval does not affect the outer scope.
+                    Example:
+                        eval('var x = 5;');
+                        console.log(x); // ReferenceError: x is not defined
+            
+            f. Prevents Assignments to Non-Writable Properties:
+                - You cannot assign values to read-only properties.
+                    Example:
+                        Object.defineProperty(window, 'PI', {
+                            value: 3.14,
+                            writable: false
+                        });
+                        PI = 3.14159; // TypeError in strict mode
+                
+            g. Disallows Deleting Variables:
+                - You cannot delete variables or function names.
+                    Example:
+                        let x = 10;
+                        delete x; // SyntaxError in strict mode
+
+        11. 3. Benefits of Using Strict Mode
+                Error Prevention: Helps catch common errors early in development.
+                Improved Performance: Some JavaScript engines optimize code better in strict mode.
+                Safer Code: Reduces the likelihood of code having bugs or behaving unexpectedly.
+
+        Summary
+            Strict Mode: A way to enforce a stricter parsing and error handling in JavaScript.
+            Enabling: Use 'use strict'; at the beginning of a script or function.
+            Restrictions: Includes eliminating this coercion, disallowing duplicate parameters, forbidding with, making eval safer, preventing assignments to non-writable properties, and disallowing deleting variables.
+
+===================================================================================================================================
+===================================================================================================================================
+
+12. Using the this Keyword in JavaScript
+    12.1. In a Method
+        - Inside a method of an object, this refers to the object itself.
+            Example:
+                const person = {
+                    name: 'Alice',
+                    greet: function() {
+                        return `Hello, ${this.name}`;
+                    }
+                };
+                console.log(person.greet()); // "Hello, Alice"
+
+    12.2. In a Function
+        - In a regular function (not a method), this refers to the global object (window in browsers) or undefined in strict mode.
+            Example:
+                function showThis() {
+                    console.log(this); // Window (or undefined in strict mode)
+                }
+                showThis();
+
+    12.3. Using It Alone
+        - When this is used alone (not within an object or function), its behavior depends on the context. Generally, it refers to the global object or undefined.
+            Example:
+                console.log(this); // Window (or undefined in strict mode)
+
+    13.4. In Event Handlers
+        - In event handlers, this refers to the element that triggered the event.
+            Example:
+                document.getElementById('myButton').addEventListener('click', function() {
+                    console.log(this); // Button element
+                });
+    
+    13.5. In Arrow Functions
+        - Arrow functions do not have their own this context. Instead, this is lexically inherited from the surrounding function or global scope.
+            Example:
+                const obj = {
+                    name: 'Bob',
+                    greet: function() {
+                        setTimeout(() => {
+                            console.log(this.name); // Bob (inherited from obj)
+                        }, 1000);
+                    }
+                };
+                obj.greet();
+
+    13.6. Function Borrowing
+        - Allows a function to be used by a different object.
+            Example:
+                const person1 = {
+                    name: 'John',
+                    greet: function() {
+                        return `Hello, ${this.name}`;
+                    }
+                };
+                const person2 = {
+                    name: 'Jane'
+                };
+                console.log(person1.greet.call(person2)); // "Hello, Jane"
+
+13.7 Explicit Binding
+    a. apply
+        - Calls a function with a given this value and arguments provided as an array.
+            Example:
+                function greet(greeting) {
+                    return `${greeting}, ${this.name}`;
+                }
+                const person = { name: 'Alice' };
+                console.log(greet.apply(person, ['Hello'])); // "Hello, Alice"
+
+    b. call
+        - Calls a function with a given this value and arguments provided individually.
+            Example:
+                function greet(greeting, punctuation) {
+                    return `${greeting}, ${this.name}${punctuation}`;
+                }
+                const person = { name: 'Bob' };
+                console.log(greet.call(person, 'Hi', '!')); // "Hi, Bob!"
+
+    c. bind
+        Description: Returns a new function with a given this value and arguments. The new function can be called later.
+            Example:
+                function greet(greeting) {
+                    return `${greeting}, ${this.name}`;
+                }
+                const person = { name: 'Charlie' };
+                const greetCharlie = greet.bind(person);
+                console.log(greetCharlie('Hello')); // "Hello, Charlie"
+
+    Summary
+        a. this Keyword: Refers to the context in which a function is called. Behavior varies based on usage (method, function, event handler, arrow function).
+        b. Function Borrowing: Using a function from one object with another object’s context.
+        c. Explicit Binding: Methods like apply, call, and bind are used to explicitly set the this value for a function.
+
+===================================================================================================================================
+===================================================================================================================================
+
+
+
+
+===================================================================================================================================
+===================================================================================================================================
+
+
+
+===================================================================================================================================
+===================================================================================================================================
+
+
+
+===================================================================================================================================
+===================================================================================================================================
+
+
+
