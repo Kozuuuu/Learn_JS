@@ -1,0 +1,446 @@
+1. All about Variables
+    a. Var
+        var: Can be both redeclared and reassigned.
+    b. let
+        let: Cannot be redeclared in the same scope but can be reassigned.
+    c. const
+        const: Cannot be redeclared or reassigned.
+
+    1.1 Variable Declaration
+        a. var: Function-scoped, hoisted, can be redeclared and reassigned.
+        b. let: Block-scoped, hoisted but not initialized, cannot be redeclared, can be reassigned.
+        c. const: Block-scoped, hoisted but not initialized, cannot be redeclared or reassigned, must be initialized when declared.
+
+    1.2 Hosting
+        -JavaScript variables declared with var are "hoisted" to the top of their scope, meaning they can be accessed before their declaration, but they will be undefined until the actual line where they are initialized.
+        -let and const are also hoisted, but they are not initialized and cannot be accessed until the code execution reaches their declaration line (known as the "temporal dead zone").
+
+    1.3 Variable Naming Rules
+        -Start with a letter: Variable names must begin with a letter (a-z or A-Z), an underscore _, or a dollar sign $.
+        -No numbers at the beginning: You can't start a variable name with a number, but numbers can be used elsewhere.
+        -Case-sensitive: JavaScript is case-sensitive, so myVariable and myvariable are different.
+        -No spaces: Variable names cannot contain spaces.
+        -No reserved keywords: You can't use JavaScript reserved keywords (like let, const, if, while) as variable names.
+            ex. Valid: 'firstName', '_index', '$price', 'age2'
+                Invalid: '2ndPlace', 'my variable', 'let'
+
+    1.4 Variable Scope
+        a. Global Scope: A variable declared outside of any function or block has global scope and can be accessed from anywhere in the code.
+        b. Function Scope: Variables declared with var inside a function are only accessible within that function.
+        c. Block Scope: Variables declared with let or const inside a block {} are only accessible within that block. 
+
+====================================================================================================================================
+====================================================================================================================================
+
+2. Data Types
+    a. Numbers: Represents both integer and floating-point numbers.
+        ex. let age = 30;      // Integer
+            let price = 9.99;  // Floating-point
+
+    b. Strings: Represents a sequence of characters. Can be enclosed in single quotes ' ', double quotes " ", or backticks ` `.
+        ex. let name = "John";
+
+    c. Booleans: Represents a logical entity with two values: true or false.
+        ex. let isTrue = true;
+
+    d. Objects: Represents a collection of key-value pairs. Keys are strings (or Symbols), and values can be of any type.
+        ex. let person = { 
+                firstName: "Jane", 
+                lastName: "Doe"
+                age: 22
+                isStudent: true
+            };    
+
+    e. Arrays: A special type of object used for ordered collections of items. Arrays can hold items of any type, including other arrays.
+        ex. let colors = ["red", "green", "blue"];
+            let mixed = ["apple", 42, true, [1, 2, 3]];
+
+    f. Undefined: A variable declared but not assigned a value is undefined.
+        ex. let x;
+            console.log(x); // Outputs: undefined
+
+    g. Null: Represents an intentional absence of any object value: 
+        ex. let empty = null;
+
+    h. Symbol: Represents a unique and immutable value, often used as object property keys.
+        ex. let sym = Symbol('description');
+
+    i. BigInt: Represents a whole number that can be arbitrarily large, with unlimited precision.
+        ex. let bigNumber = 1234567890123456789012345678901234567890n;
+
+    j. Function (a special type of object): Represents a block of code designed to perform a specific task. Functions can be assigned to variables, passed as arguments, and returned from other functions.
+        ex. function greet(name) {
+                return `Hello, ${name}!`;
+            }
+------------------------------------------------------------------------------------------------------------------------------------
+    2.1 Type of Operator
+        -The typeof operator in JavaScript returns the type of a variable or value.
+        -typeof returns a string representing the type of a value.
+        -Common types include number, string, boolean, object, function, undefined, symbol, and bigint.
+            ex. let num1 = 42;
+                console.log(typeof num1); // Outputs: "number"
+            ex. function myFunction() {}
+                console.log(typeof myFunction); // Outputs: "function"
+            ex. let sym = Symbol();
+                console.log(typeof sym); // Outputs: "symbol"
+------------------------------------------------------------------------------------------------------------------------------------
+    2.2 Object
+        -an object is a complex data type that allows you to store collections of data in key-value pairs. 
+        -Objects can hold values of any data type, including other objects.    
+
+        a. Creating an Object
+            a.1 Object Literals
+                -Directly define an object with properties.
+                    ex. let person = {
+                            name: "Alice",
+                            age: 30,
+                            isStudent: false
+                        };
+            a.2 Using the new Object() Syntax
+                -Create an object using the constructor
+                    ex. let car = new Object();
+                        car.make = "Toyota";
+                        car.model = "Camry";
+                        car.year = 2022;
+
+        b. Accessing Object Properties
+            b.1  Dot Notation
+                -Access properties using a dot
+                    ex. console.log(person.name); // Outputs: "Alice"
+            b.2 Bracket Notation  
+                -Access properties using brackets and a key.  
+                    ex. console.log(person["age"]); // Outputs: 30
+
+        c. Modifying Object Properties
+            -Change the value of an existing property
+            ex. person.age = 31; // Updates age
+                person["isStudent"] = true; // Updates isStudent
+
+        d. Adding new Properties
+            -Add new key-value pairs to an object
+                ex. person.email = "alice@example.com"; // Adds new property
+
+        e. Deleting Properties
+            -Remove a property from an object
+                ex. delete person.email; // Removes the email property
+
+        f. Methods in Objects
+            -Functions stored as object properties
+            ex. let dog = {
+                    name: "Rex",
+                    bark: function() {
+                        console.log("Woof!");
+                    }
+                };
+                dog.bark(); // Outputs: "Woof!"
+
+        g. Nested Objects
+            -Objects within objects
+                ex. let company = {
+                        name: "TechCorp",
+                        address: {
+                            city: "San Francisco",
+                            state: "CA"
+                        }
+                    };
+                    console.log(company.address.city); // Outputs: "San Francisco"
+------------------------------------------------------------------------------------------------------------------------------------
+    2.3 Object Prototypes 
+        -Every JavaScript object has a prototype object from which it can inherit properties and methods. This prototype is itself an object, and it can have its own prototype, forming a prototype chain.
+        -An object’s prototype from which it inherits properties
+        -Creation: Object.create(proto).
+
+        a.Prototype Basics
+            -Every JavaScript object has a prototype, which is another object from which it inherits properties and methods.
+            -Accessing Prototype: Use Object.getPrototypeOf(obj) to get the prototype of an object.
+
+        b.Prototype chain
+            -The prototype chain allows objects to inherit properties and methods from other objects.
+                ex. let animal = {
+                        eats: true
+                    };
+                    let dog = Object.create(animal);
+                    console.log(dog.eats); // true, inherited from animal
+        
+        c. Object.prototype
+            -The top-level prototype object from which all objects inherit. Contains methods like toString, hasOwnProperty, etc.
+                ex. let obj = {};
+                    console.log(obj.toString()); // "[object Object]"
+
+        d. Custom Prototypes
+            - Creating a Prototype: You can define your own prototype for objects
+                ex. function Person(name) {
+                        this.name = name;
+                    }
+                        Person.prototype.greet = function() {
+                        return `Hello, ${this.name}`;
+                    };
+                    let alice = new Person('Alice');
+                    console.log(alice.greet()); // "Hello, Alice"
+
+        e. Prototype Inheritance
+            - Objects can inherit properties and methods from other objects via prototypes.
+                ex. let parent = {
+                        value: 1
+                    };
+                    let child = Object.create(parent);
+                    console.log(child.value); // 1, inherited from parent
+
+        f. Modifying Prototypes
+            - You can add or modify properties and methods on an object's prototype.
+                ex. Array.prototype.first = function() {
+                        return this[0];
+                    };
+                    let numbers = [1, 2, 3];
+                    console.log(numbers.first()); // 1
+
+        g. hasOwnProperty Method
+            - Checks if an object has a specific property directly (not inherited).
+                ex. let obj = { key: 'value' };
+                    console.log(obj.hasOwnProperty('key')); // true
+                    console.log(obj.hasOwnProperty('toString')); // false, inherited
+
+------------------------------------------------------------------------------------------------------------------------------------
+    2.4 Prototypal Inheritance
+        - Prototypal inheritance allows objects to inherit properties and methods from other objects. This is achieved through the prototype chain. When accessing a property, JavaScript first checks the object itself, then its prototype, and so on up the chain.
+        - Allows objects to inherit from other objects.
+        - Access: JavaScript follows the prototype chain to find properties and methods.
+
+            ex. let animal = {
+                    eats: true
+                };
+                let dog = Object.create(animal);    
+                dog.bark = function() {
+                    console.log("Woof!");
+                };
+                console.log(dog.eats); // true, inherited from animal
+                dog.bark(); // "Woof!", method defined on dog
+----------------------------------------------------------------------------------------------------------------------------------
+    2.5 Built in Objects
+        a. Object
+            - The base object from which all objects inherit. Provides methods for manipulating objects.
+            ex. let obj = {};
+                console.log(Object.keys(obj)); // []
+
+        b. Array
+            - Represents a list-like collection of elements.    
+                ex. let arr = [1, 2, 3];
+                    console.log(arr.length); // 3
+
+        c. String
+            - Represents a sequence of characters with methods for string manipulation.
+                ex. let str = "Hello";
+                    console.log(str.toUpperCase()); // "HELLO"
+
+        d. Number
+            - Represents numeric values, including integers and floating-point numbers.
+                ex. let num = 123;
+                    console.log(Number.isInteger(num)); // true
+
+        e. Boolean
+            - Represents a logical entity with two values: true or false.
+                ex. let flag = true;
+                    console.log(flag.toString()); // "true"
+
+        f. Function
+            - Represents a block of code designed to perform a task. Functions are also objects.
+                ex. function greet() { return "Hello"; }
+                    console.log(typeof greet); // "function"
+
+        g. Date
+            - Represents dates and times.
+                ex. let now = new Date();
+                    console.log(now.toDateString()); // Current date
+
+        h. RegExp
+            - Represents regular expressions for pattern matching in strings.
+                ex. let regex = /abc/;
+                    console.log(regex.test("abcdef")); // true
+    
+        i. Math
+            - Provides mathematical constants and functions.
+                ex. console.log(Math.PI); // 3.141592653589793
+                    console.log(Math.sqrt(16)); // 4
+
+        j. JSON
+            - Provides methods for parsing and stringifying JSON data.
+                ex. let obj = { name: "Alice" };
+                    let jsonString = JSON.stringify(obj);
+                    console.log(jsonString); // '{"name":"Alice"}'
+
+        k. Error
+            - Represents runtime errors.
+                ex. try {
+                        throw new Error("Something went wrong");
+                    } catch (e) {
+                        console.log(e.message); // "Something went wrong"
+                    }
+
+        l. Map
+            - Represents a collection of key-value pairs where keys can be any data type.
+                ex. let map = new Map();
+                    map.set("key", "value");
+                    console.log(map.get("key")); // "value"
+
+        m. Set
+            - Represents a collection of unique values.
+                ex. let set = new Set();
+                    console.log(set.has(2)); // true
+
+===================================================================================================================================
+===================================================================================================================================
+
+3. Type Casting
+    -Type casting in JavaScript involves converting a value from one data type to another
+        
+        a. Implicit Type Conversion (Coercion)
+            -JavaScript automatically converts types in certain contexts.
+                ex. String to Number:
+                    let num = "5" * 2; // "5" is coerced to 5, result is 10
+                ex. Number to String:   
+                    let str = 10 + ""; // 10 is coerced to "10"
+                ex. Boolean Context:
+                    let bool = !!"Hello"; // Converts "Hello" to true
+
+        b.  Explicit Type Conversion (Conversion)
+                -Manually converting types using functions:
+                    ex. To String: 
+                            let num = 123;
+                            let str = String(num); // "123"
+                    ex. To Number:
+                            let str = "123";
+                            let num = Number(str); // 123
+                    ex. To Boolean:
+                            let value = 1;
+                            let bool = Boolean(value); // true
+                    ex. Using 'parseInt' and 'parseFloat'
+                            let intStr = "123";
+                            let intNum = parseInt(intStr); // 123
+
+                            let floatStr = "123.45";
+                            let floatNum = parseFloat(floatStr); // 123.45
+ 
+==================================================================================================================================
+==================================================================================================================================
+
+4. Data Structures 
+    a. Arrays
+        -Description: Ordered collections of elements, which can be of any type.
+        -Key Operations: Access, add, remove elements.
+            ex. let fruits = ['apple', 'banana', 'cherry'];
+                console.log(fruits[1]); // "banana"
+                fruits.push('orange'); // Add to end  // ['apple', 'banana', 'cherry', 'orange']
+
+    b. Objects
+        -Description: Collections of key-value pairs, where keys are strings (or Symbols) and values can be of any type.
+        -Key Operations: Access, add, modify, delete properties.
+            ex. let person = {
+                name: 'Alice',
+                age: 30
+                };
+                console.log(person.name); // "Alice"
+                console.log(person.age); // "30"
+                person.age = 31; // Modify property
+
+    c. Sets
+        -Description: Collections of unique values. Unlike arrays, a Set does not allow duplicate values.
+        -Key Operations: Add, delete, check for presence.
+            ex. let numbers = new Set([1, 2, 3, 4]);
+                numbers.add(5);
+                console.log(numbers.has(3)); // true
+
+    d. Maps
+        -Description: Collections of key-value pairs where keys can be of any type (not just strings).
+        -Key Operations: Set, get, delete, check for keys.
+            ex. let map = new Map();
+                map.set('name', 'Bob');
+                console.log(map.get('name')); // "Bob"
+
+    e. WeakSets
+        -Description: Similar to Sets but with weak references to objects. Useful for memory management.
+        -Key Operations: Add, delete, check for presence.
+            ex. let weakSet = new WeakSet();
+                let obj = {};
+                weakSet.add(obj);
+                console.log(weakSet.has(obj)); // true
+
+    f. WeakMaps
+        -Description: Similar to Maps but with weak references to keys. Useful for memory management.
+        -Key Operations: Set, get, delete, check for keys.
+            ex. let weakMap = new WeakMap();
+                let obj = {};
+                weakMap.set(obj, 'value');
+                console.log(weakMap.get(obj)); // "value"
+    
+    g. Typed Arrays
+        -Description: Arrays with a fixed type for elements (e.g., Int8Array, Uint16Array).
+        -Key Operations: Same as regular arrays but with typed constraints.
+            ex. let typedArray = new Uint8Array([1, 2, 3]);
+                console.log(typedArray[1]); // 2
+
+    4.1 Structured Data
+        -Structured Data refers to data that is organized in a predefined format or schema, making it easily searchable and manageable.
+
+            a.JSON(JavaScript Object Notation)
+                - A lightweight data interchange format that's easy to read and write for humans and easy to parse and generate for machines.
+                - Key-value pairs, widely used in web APIs.
+                    ex. {
+                        "name": "Alice",
+                        "age": 30,
+                        "email": "alice@example.com",
+                        "isActive": true
+                        }
+
+            b. XML(eXtensible Markup Language)
+                - A markup language that defines rules for encoding documents in a format that is both human-readable and machine-readable.
+                - Hierarchical structure with tags, used in various data interchange scenarios. b
+                    ex. <person>
+                            <name>Alice</name>
+                            <age>30</age>
+                            <email>alice@example.com</email>
+                            <isActive>true</isActive>
+                        </person>
+
+            c.CSV(Comma-Separated Values)
+                - A simple format for storing tabular data where each line represents a row and columns are separated by commas.
+                - Tabular format, simple and used in spreadsheets and data export/import.
+                    ex. name,age,email,isActive
+                        Alice,30,alice@example.com,true
+            
+            d.Databases
+                - structured collections of data organized in tables (relational databases) or documents (NoSQL databases).
+                - Structured data stored in tables (relational) or documents (NoSQL).
+                    ex. CREATE TABLE users (
+                            id INT PRIMARY KEY,
+                            name VARCHAR(100),
+                            age INT,
+                            email VARCHAR(100),
+                            isActive BOOLEAN
+                        );
+
+
+            e. YAML(YAML Ain't Markup Language)
+                - A human-readable data serialization standard that can be used to represent data structures.
+                - Human-readable format, often used for configuration files.
+                    ex. name: Alice
+                        age: 30
+                        email: alice@example.com
+                        isActive: true
+
+            
+            f.HTML(HyperText Markup Language): 
+                - The standard markup language used to create web pages.
+                - Markup language for web pages, hierarchical tag-based structure.
+                    ex. <html>
+                            <body>
+                                <h1>Alice</h1>
+                                <p>Age: 30</p>
+                                <p>Email: alice@example.com</p>
+                                <p>Active: true</p>
+                            </body>
+                        </html>
+
+
+
+
+
