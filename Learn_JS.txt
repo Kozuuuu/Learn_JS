@@ -377,7 +377,7 @@
         -Key Operations: Same as regular arrays but with typed constraints.
             ex. let typedArray = new Uint8Array([1, 2, 3]);
                 console.log(typedArray[1]); // 2
-
+------------------------------------------------------------------------------------------------------------------------------------
     4.1 Structured Data
         -Structured Data refers to data that is organized in a predefined format or schema, making it easily searchable and manageable.
 
@@ -418,7 +418,6 @@
                             isActive BOOLEAN
                         );
 
-
             e. YAML(YAML Ain't Markup Language)
                 - A human-readable data serialization standard that can be used to represent data structures.
                 - Human-readable format, often used for configuration files.
@@ -427,7 +426,6 @@
                         email: alice@example.com
                         isActive: true
 
-            
             f.HTML(HyperText Markup Language): 
                 - The standard markup language used to create web pages.
                 - Markup language for web pages, hierarchical tag-based structure.
@@ -439,8 +437,491 @@
                                 <p>Active: true</p>
                             </body>
                         </html>
+------------------------------------------------------------------------------------------------------------------------------------
+    4.2 JSON (JavaScript Object Notation) is a lightweight, text-based format used to represent structured data. It is commonly used for data interchange between a server and a client in web applications.
+
+        a. JSON Structure
+            Objects: Represented as key-value pairs enclosed in curly braces {}.
+            Arrays: Ordered lists of values enclosed in square brackets [].
+            Values: Can be strings, numbers, booleans, objects, arrays, or null.
+
+        b. Basic Syntax
+            b.1. Object:
+                ex. {
+                    "key": "value"
+                    }
+            b.2. Array:
+                ex. [
+                    "value1",
+                    "value2"
+                    ]
+            EXAMPLE:
+            {
+                "name": "Alice",
+                "age": 30,
+                "isActive": true,
+                "address": {
+                "street": "123 Main St",
+                "city": "Wonderland"
+            },
+            "phoneNumbers": ["123-456-7890", "987-654-3210"]
+            }
+
+        c. Data Types
+            c.1. String
+                - Enclosed in double quotes.
+                    ex. "Hello, World!"
+            c.2. Numbers 
+                - Can be an integer or floating-point. 
+                ex. "age": 25
+            c.3. Boolean: true or false.
+                ex. "isActive": true
+            c.4.Object: 
+                -Key-value pairs.
+                    ex. "address": {
+                            "street": "123 Main St",
+                            "city": "Wonderland"
+                        }
+            c.5. Array:
+                - Ordered list of values.
+                    ex. "phoneNumbers": ["123-456-7890", "987-654-3210"]
+            c.6. Null:
+                - Represents a null value.
+                    ex. "middleName": null
+       
+        d. Usage in JavaScript
+            d.1. Parsing JSON: 
+                -Convert JSON string to JavaScript object.
+                    ex. let jsonString = '{"name": "Alice", "age": 30}';
+                        let obj = JSON.parse(jsonString);
+                        console.log(obj.name); // "Alice"
+            d.2. Stringifying JSON:
+                - Convert JavaScript object to JSON string.
+                    ex. let obj = { name: "Alice", age: 30 };
+                        let jsonString = JSON.stringify(obj);
+                        console.log(jsonString); // '{"name":"Alice","age":30}'
+        
+        e. Key Points   
+            -Human-Readable: JSON is text-based and easy to read and write.
+            -Lightweight: Efficient for data interchange.
+            -Interoperable: Used in many programming languages, including JavaScript.
+
+        6. Common Uses
+            -APIs: Data interchange between client and server.
+            -Configuration Files: Storing settings in a structured format.
+            -Data Storage: Saving structured data in files or databases.
+-----------------------------------------------------------------------------------------------------------------------------------
+    4.3 Indexed Collections 
+        -in JavaScript are data structures where elements are accessed using numerical indexes. The main indexed collections in JavaScript are Arrays and Typed Arrays. Here’s a brief overview:
+
+        a. Arrays
+            - Ordered collection of elements accessed by numerical index (starting at 0).
+                    ex. let fruits = ['apple', 'banana', 'cherry'];
+                        console.log(fruits[1]); // "banana"
+                        fruits.push('date'); // Adds "date" to the end
+
+        b. Typed Arrays
+            - Arrays for specific numeric types, used for handling binary data.
+                    ex. let intArray = new Int16Array(5); // Array of 5 16-bit integers
+                        intArray[0] = 100;
+                        console.log(intArray[0]); // 100
+    Summary:
+        a. Array: General use, flexible types.
+        b. Typed Array: Specific numeric types, used for binary data.
+
+===================================================================================================================================
+===================================================================================================================================
+
+5. Equality Comparison in JavaScript
+        a. == (Loose Equality)
+            - Compares values after type conversion (coercion). Different types can be considered equal.
+                ex. console.log(5 == '5'); // true (string '5' is converted to number 5)
+                    console.log(true == 1); // true (true is converted to 1)
+
+        b. === (Strict Equality)
+            - Compares values without type conversion. Types must be the same to be considered equal. More Precise
+                ex. console.log(5 === '5'); // false (no type conversion, different types)
+                    console.log(true === 1); // false (boolean vs. number)
+        
+        c. Object.is
+            - Object.is is a method in JavaScript that compares two values for strict equality, similar to ===, but with a few key differences in how it handles special cases like NaN and -0.
+                ex. console.log(Object.is(25, 25)); // true
+                    console.log(Object.is('hello', 'hello')); // true
+                    console.log(Object.is({}, {})); // false (different objects in memory)
+                        
+            a. NaN
+                - Object.is(NaN, NaN) returns true.
+                - NaN === NaN returns false.
+                    ex. console.log(Object.is(NaN, NaN)); // true
+                        console.log(NaN === NaN); // false
+            b. +0 and -0:
+                - Object.is(+0, -0) returns false.
+                - +0 === -0 returns true.
+                    ex. console.log(Object.is(+0, -0)); // false
+                        console.log(+0 === -0); // true
+
+    Summary:
+        a. == Checks for equality with type conversion.
+        b. === Checks for equality without type conversion, more precise.
+        c. Object.is is used for comparing two values with special handling for NaN and -0.
+           It’s more precise than === in specific edge cases.
+
+===================================================================================================================================
+===================================================================================================================================
+
+6. Loop and Iterations
+    
+    a.for loop
+        - Repeats a block of code a specific number of times.
+            ex. for (let i = 0; i < 5; i++) {
+                console.log(i);     // 0, 1, 2, 3, 4
+                }
+
+    b. while loop
+        - Repeats a block of code while a condition is true.
+            ex. let i = 0;
+                while (i < 5) {
+                    console.log(i);     // 0, 1, 2, 3, 4
+                    i++;
+                }
+
+    c. do...while loop
+        - Similar to while, but guarantees at least one execution.    
+            ex. let i = 0;
+                do {
+                    console.log(i);     // 0, 1, 2, 3, 4
+                    i++;
+                } while (i < 5);
+
+    d. for...of loop
+        - Iterates over the values of an iterable (like an array).
+            ex. let fruits = ['apple', 'banana', 'cherry'];
+                for (let fruit of fruits) {
+                    console.log(fruit); // "apple", "banana", "cherry"
+                }
+
+    e. for...in loop
+        - Iterates over the enumerable properties of an object.
+            ex. let obj = {a: 1, b: 2, c: 3};
+                    for (let key in obj) {
+                    console.log(key, obj[key]);      // "a 1", "b 2", "c 3"
+                }
+
+    f. Array.prototype.forEach()
+        - Executes a function once for each array element. g
+            ex. let numbers = [1, 2, 3];
+                numbers.forEach(num => console.log(num)); // 1, 2, 3
+
+    g. Array.prototype.map()
+        - Creates a new array by applying a function to each element of an array.
+            ex. let numbers = [1, 2, 3];
+                let squared = numbers.map(num => num * 2);
+                console.log(squared); // [2, 4, 6]
+
+    h. Array.prototype.filter()
+        - Creates a new array with elements that pass a condition. 
+            ex. let numbers = [1, 2, 3, 4];
+                let even = numbers.filter(num => num % 2 === 0);
+                console.log(even); // [2, 4]
+
+    i. Array.prototype.reduce()
+        - Reduces an array to a single value by applying a function. 
+            ex. let numbers = [1, 2, 3, 4];
+                let sum = numbers.reduce((acc, num) => acc + num, 0);
+                console.log(sum); // 10
+
+    j. break
+        - Exits the current loop immediately.
+            ex. for (let i = 0; i < 5; i++) {
+                if (i === 3) {
+                    break; // Exits the loop when i is 3
+                }
+                console.log(i); // 0, 1, 2
+                }
+
+    k. continue:
+        - Skips the current iteration and continues with the next one.
+            ex. for (let i = 0; i < 5; i++) {
+                if (i === 3) {
+                    continue; // Skips the iteration when i is 3
+                }
+                console.log(i); // 0, 1, 2, 4
+                }
+
+    Summary:
+        (a, b, c) Traditional Loops: for, while, do...while.
+        (d, e, f) Modern Loops: for...of, for...in, forEach.
+        (f, g, h, i) Array Methods: map, filter, reduce
+        j. break: Stops the loop entirely.
+        k. continue: Skips the rest of the current iteration and moves to the next one.
+
+===================================================================================================================================
+===================================================================================================================================
+
+7. Control Flow
+    -Control Flow in JavaScript determines the order in which statements, functions, and commands are executed. It includes various constructs to control the execution of code based on conditions and loops.
+    
+        a. Conditional Statements
+            a.1. if Statement
+                Executes code if a condition is true.
+                    ex. let age = 18;
+                        if (age >= 18) {
+                        console.log("Adult");
+                        }
+
+            a.2. if...else Statement:
+                - Executes one block if a condition is true, and another if it's false.
+                    ex. let age = 16;
+                        if (age >= 18) {
+                            console.log("Adult");
+                        } else {
+                            console.log("Not an adult");
+                        }
+            
+            a.3. if...else if...else Statement:
+                - Checks multiple conditions.
+                    ex. let score = 85;
+                        if (score >= 90) {
+                            console.log("A");
+                        } else if (score >= 80) {
+                            console.log("B");
+                        } else {
+                            console.log("C");
+                        }
+
+            a.4. switch Statement
+                - Chooses among multiple options based on a variable's value.
+                    ex. let day = 2;
+                        switch (day) {
+                        case 1:
+                            console.log("Monday");
+                            break;
+                        case 2:
+                            console.log("Tuesday");
+                            break;
+                        default:
+                            console.log("Other day");
+                        }
+    
+        b. Looping Constructs
+            b.1. for Loop:
+                - Repeats a block of code a specific number of times.
+                    ex. for (let i = 0; i < 5; i++) {
+                            console.log(i); // 0, 1, 2, 3, 4
+                        }
+                        
+            b.2. while Loop:
+                - Repeats a block of code while a condition is true.
+                    ex. let i = 0;
+                        while (i < 5) {
+                            console.log(i); // 0, 1, 2, 3, 4
+                            i++;
+                        }
+
+            b.3. do...while Loop:
+                - Similar to while, but guarantees at least one execution.
+                    ex. let i = 0;
+                        do {
+                            console.log(i); // 0, 1, 2, 3, 4
+                            i++;
+                        } while (i < 5);
+
+        c. Control Flow Statements
+            c.1. break:
+                - Exits the current loop or switch statement immediately.
+                    ex. for (let i = 0; i < 5; i++) {
+                            if (i === 3) break; // Exits loop when i is 3
+                            console.log(i); // 0, 1, 2
+                        }
+
+            c.2. continue:
+                - Skips the current iteration and continues with the next one.
+                    ex. for (let i = 0; i < 5; i++) {
+                        if (i === 3) continue; // Skips printing 3
+                        console.log(i); // 0, 1, 2, 4
+                        }
 
 
+        d. Exceptional Handling
+            d.1. throw Statement:
+                - Used to create custom errors.
+                    ex. function checkNumber(num) {
+                            if (num < 0) {
+                                throw new Error("Negative number not allowed");
+                            }
+                        }
+                        checkNumber(-1);    // Throws error
 
+            d.2. try...catch...finally:
+                - Handles errors that occur during execution.
+                    ex. try {
+                            // Code that may throw an error
+                            let result = riskyOperation();
+                        } catch (error) {
+                            // Code to handle the error
+                            console.log("An error occurred:", error.message);
+                        } finally {
+                            // Code that runs regardless of whether an error occurred or not
+                            console.log("Execution complete");
+                        }
 
+            d.3. Error Objects:
+                - Objects representing errors, with properties like message and name.
+                    ex. try {
+                            throw new Error("Something went wrong");
+                        } catch (error) {
+                            console.log(error.name); // "Error"
+                            console.log(error.message); // "Something went wrong"
+                        }
+    Summary:
+        a. Conditional Statements: Control flow based on conditions (if, else, switch).
+        b. Loops: Repeat code (for, while, do...while).
+        c. Control Flow Statements: Modify loop execution (break, continue).
+        d. Exceptional Handling: Manage errors with throw, try...catch...finally, and use Error objects to represent errors.
 
+===================================================================================================================================
+===================================================================================================================================
+
+8. expressions and Operators
+    a.Expressions and Operations in JavaScript
+1. Conditional Operators
+Ternary Operator (? :):
+Description: Short-hand for if...else.
+Example:
+javascript
+Copy code
+let age = 18;
+let status = (age >= 18) ? "Adult" : "Minor";
+console.log(status); // "Adult"
+2. Comma Operator
+Description: Executes multiple expressions in a single statement, returns the last expression’s value.
+Example:
+javascript
+Copy code
+let x = (2, 3, 4);
+console.log(x); // 4
+3. Unary Operators
+Description: Operates on a single operand.
+Examples:
+Increment (++):
+javascript
+Copy code
+let a = 5;
+a++; // a is now 6
+Decrement (--):
+javascript
+Copy code
+let b = 10;
+b--; // b is now 9
+Unary Negation (-):
+javascript
+Copy code
+let c = 5;
+console.log(-c); // -5
+4. Relational Operators
+Description: Compare two values to determine their relationship.
+Examples:
+Less Than (<):
+javascript
+Copy code
+console.log(3 < 5); // true
+Greater Than (>):
+javascript
+Copy code
+console.log(7 > 2); // true
+5. Assignment Operators
+Description: Assign values to variables.
+Examples:
+Simple Assignment (=):
+javascript
+Copy code
+let x = 10;
+Addition Assignment (+=):
+javascript
+Copy code
+let y = 5;
+y += 3; // y is now 8
+6. Comparison Operators
+Description: Compare values and return a boolean.
+Examples:
+Equal to (==):
+javascript
+Copy code
+console.log(5 == '5'); // true (coercion)
+Strict Equal (===):
+javascript
+Copy code
+console.log(5 === 5); // true
+7. Arithmetic Operators
+Description: Perform mathematical operations.
+Examples:
+Addition (+):
+javascript
+Copy code
+console.log(5 + 3); // 8
+Subtraction (-):
+javascript
+Copy code
+console.log(5 - 2); // 3
+Multiplication (*):
+javascript
+Copy code
+console.log(4 * 3); // 12
+Division (/):
+javascript
+Copy code
+console.log(8 / 2); // 4
+8. Bitwise Operators
+Description: Perform operations on binary representations of numbers.
+Examples:
+AND (&):
+javascript
+Copy code
+console.log(5 & 3); // 1 (binary 0101 & 0011 = 0001)
+OR (|):
+javascript
+Copy code
+console.log(5 | 3); // 7 (binary 0101 | 0011 = 0111)
+9. Logical Operators
+Description: Perform logical operations.
+Examples:
+AND (&&):
+javascript
+Copy code
+console.log(true && false); // false
+OR (||):
+javascript
+Copy code
+console.log(true || false); // true
+NOT (!):
+javascript
+Copy code
+console.log(!true); // false
+10. BigInt Operators
+Description: Handle large integers.
+Example:
+javascript
+Copy code
+let big1 = 1234567890123456789012345678901234567890n;
+let big2 = 9876543210987654321098765432109876543210n;
+console.log(big1 + big2); // BigInt sum
+11. String Operators
+Description: Perform operations on strings.
+Examples:
+Concatenation (+):
+javascript
+Copy code
+let greeting = "Hello, " + "world!";
+console.log(greeting); // "Hello, world!"
+        Summary:
+        Conditional Operators: ? :
+        Comma Operator: ,
+        Unary Operators: ++, --, -
+        Relational Operators: <, >
+        Assignment Operators: =, +=, etc.
+        Comparison Operators: ==, ===
+        Arithmetic Operators: +, -, *, /
+        Bitwise Operators: &, |
+        Logical Operators: &&, ||, !
+        BigInt Operators: Handle large integers with n
+        String Operators: + for concatenation
