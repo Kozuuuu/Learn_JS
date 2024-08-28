@@ -532,39 +532,84 @@
 ===================================================================================================================================
 ===================================================================================================================================
 
-5. Equality Comparison in JavaScript
-        a. == (Loose Equality)
+5. Equality Comparison 
+    a. Value Comparison Operators
+        a.1. == (Loose Equality)
             - Compares values after type conversion (coercion). Different types can be considered equal.
                 ex. console.log(5 == '5'); // true (string '5' is converted to number 5)
                     console.log(true == 1); // true (true is converted to 1)
 
-        b. === (Strict Equality)
+        a.2. === (Strict Equality)
             - Compares values without type conversion. Types must be the same to be considered equal. More Precise
                 ex. console.log(5 === '5'); // false (no type conversion, different types)
                     console.log(true === 1); // false (boolean vs. number)
         
-        c. Object.is
+        a.3. Object.is
             - Object.is is a method in JavaScript that compares two values for strict equality, similar to ===, but with a few key differences in how it handles special cases like NaN and -0.
                 ex. console.log(Object.is(25, 25)); // true
                     console.log(Object.is('hello', 'hello')); // true
                     console.log(Object.is({}, {})); // false (different objects in memory)
                         
-            a. NaN
+            a.a. NaN
                 - Object.is(NaN, NaN) returns true.
                 - NaN === NaN returns false.
                     ex. console.log(Object.is(NaN, NaN)); // true
                         console.log(NaN === NaN); // false
-            b. +0 and -0:
+            a.b. +0 and -0:
                 - Object.is(+0, -0) returns false.
                 - +0 === -0 returns true.
                     ex. console.log(Object.is(+0, -0)); // false
                         console.log(+0 === -0); // true
 
+    b. Equality Algorithm
+        b.1. Loosely Equal (==)
+            - Compares two values for equality with type coercion.
+            Algorithm:
+                - If the types are the same, compare values directly.
+                - If types differ, attempt type conversion and then compare.
+            Example:
+                console.log(5 == '5'); // true (type coercion)
+                console.log(null == undefined); // true
+    
+        b.2. Strictly Equal (===)
+            - Compares two values for equality without type coercion (type and value must be the same).
+            Algorithm:
+                - Check if the types are the same.
+                - If so, compare values directly.
+            Example:
+                console.log(5 === 5); // true
+                console.log(5 === '5'); // false (different types)
+
+        b.3. SameValueZero
+            - Used internally by methods like Object.is to compare values, including treating -0 and +0 as different and NaN as equal to NaN.
+            Algorithm:
+                - Treat -0 and +0 as different values.
+                - Treat NaN as equal to NaN.
+                - Compare values directly otherwise.
+            Example:
+                console.log(Object.is(-0, +0)); // false
+                console.log(Object.is(NaN, NaN)); // true
+        
+        b.4. SameValue
+            - Conceptually similar to SameValueZero, used for comparing values while handling special cases like NaN and -0 differently.
+            Algorithm:
+                - Treat -0 and +0 as the same.
+                - Treat NaN as different from other values.
+                - Compare values directly otherwise.
+            Example:
+                // SameValue is implemented by `===` but with subtle differences in special cases
+                console.log(0 === -0); // true
+                console.log(NaN === NaN); // false
+
     Summary:
-        a. == Checks for equality with type conversion.
-        b. === Checks for equality without type conversion, more precise.
-        c. Object.is is used for comparing two values with special handling for NaN and -0.
-           It’s more precise than === in specific edge cases.
+        a.1. == Checks for equality with type conversion.
+        a.2. === Checks for equality without type conversion, more precise.
+        a.3. Object.is is used for comparing two values with special handling for NaN and -0.
+             It’s more precise than === in specific edge cases.
+        b.1. Loosely Equal (==): Compares values with type coercion.
+        b.2. Strictly Equal (===): Compares values without type coercion.
+        b.3. SameValueZero: Handles NaN and 0 comparisons.
+        b.4. SameValue: Similar to SameValueZero, with special case handling.
 
 ===================================================================================================================================
 ===================================================================================================================================
@@ -826,78 +871,58 @@
                     y += 3; // y is now 8
 
     f. Comparison Operators
-Description: Compare values and return a boolean.
-Examples:
-Equal to (==):
-javascript
-Copy code
-console.log(5 == '5'); // true (coercion)
-Strict Equal (===):
-javascript
-Copy code
-console.log(5 === 5); // true
-7. Arithmetic Operators
-Description: Perform mathematical operations.
-Examples:
-Addition (+):
-javascript
-Copy code
-console.log(5 + 3); // 8
-Subtraction (-):
-javascript
-Copy code
-console.log(5 - 2); // 3
-Multiplication (*):
-javascript
-Copy code
-console.log(4 * 3); // 12
-Division (/):
-javascript
-Copy code
-console.log(8 / 2); // 4
-8. Bitwise Operators
-Description: Perform operations on binary representations of numbers.
-Examples:
-AND (&):
-javascript
-Copy code
-console.log(5 & 3); // 1 (binary 0101 & 0011 = 0001)
-OR (|):
-javascript
-Copy code
-console.log(5 | 3); // 7 (binary 0101 | 0011 = 0111)
-9. Logical Operators
-Description: Perform logical operations.
-Examples:
-AND (&&):
-javascript
-Copy code
-console.log(true && false); // false
-OR (||):
-javascript
-Copy code
-console.log(true || false); // true
-NOT (!):
-javascript
-Copy code
-console.log(!true); // false
-10. BigInt Operators
-Description: Handle large integers.
-Example:
-javascript
-Copy code
-let big1 = 1234567890123456789012345678901234567890n;
-let big2 = 9876543210987654321098765432109876543210n;
-console.log(big1 + big2); // BigInt sum
-11. String Operators
-Description: Perform operations on strings.
-Examples:
-Concatenation (+):
-javascript
-Copy code
-let greeting = "Hello, " + "world!";
-console.log(greeting); // "Hello, world!"
-        Summary:
+        - Compare values and return a boolean.
+            Examples:
+                ex.1. Equal to (==):
+                    console.log(5 == '5'); // true (coercion)
+                ex.2. Strict Equal (===):
+                    console.log(5 === 5); // true
+
+    g. Arithmetic Operators
+        - Perform mathematical operations.
+            Examples:
+                ex.1. Addition (+):
+                    console.log(5 + 3); // 8
+                ex.2. Subtraction (-):
+                    console.log(5 - 2); // 3
+                ex.3. Multiplication (*):
+                    console.log(4 * 3); // 12
+                ex.4. Division (/):
+                    console.log(8 / 2); // 4
+    
+    h. Bitwise Operators
+        - Perform operations on binary representations of numbers.
+            Examples:
+                ex.1. AND (&):
+                    console.log(5 & 3); // 1 (binary 0101 & 0011 = 0001)
+                ex.2. OR (|):
+                    console.log(5 | 3); // 7 (binary 0101 | 0011 = 0111)
+
+    i. Logical Operators
+        - Perform logical operations.
+            Examples:
+                ex.1. AND (&&):
+                    console.log(true && false); // false
+                ex.2. OR (||):
+                    console.log(true || false); // true
+                ex.3. NOT (!):
+                    console.log(!true); // false
+
+    j. BigInt Operators
+        - Handle large integers.
+            Example:
+                let big1 = 1234567890123456789012345678901234567890n;
+                let big2 = 9876543210987654321098765432109876543210n;
+                console.log(big1 + big2); // BigInt sum
+
+    k. String Operators
+        - Perform operations on strings.
+            Examples:
+                Concatenation (+):
+                    let greeting = "Hello, " + "world!";
+                    console.log(greeting); // "Hello, world!"
+    
+    Summary:
         Conditional Operators: ? :
         Comma Operator: ,
         Unary Operators: ++, --, -
@@ -909,3 +934,8 @@ console.log(greeting); // "Hello, world!"
         Logical Operators: &&, ||, !
         BigInt Operators: Handle large integers with n
         String Operators: + for concatenation
+
+===================================================================================================================================
+===================================================================================================================================
+
+9.
